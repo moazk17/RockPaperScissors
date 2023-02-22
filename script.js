@@ -1,3 +1,21 @@
+let playerScore = 0;
+    let computerScore = 0;
+    let rock = document.querySelector('#rock');
+    let paper = document.querySelector('#paper');
+    let scissors = document.querySelector('#scissors');
+    let score = document.querySelector('#result');
+
+    rock.addEventListener('click',() => {
+        playRound('rock', computerSelection);
+    } );
+    paper.addEventListener('click', () => {
+        playRound('paper', computerSelection);
+    });
+    scissors.addEventListener('click',() => { 
+        playRound('scissors', computerSelection);
+    });
+
+
 function getComputerSelection() {
     let choice =Math.floor(Math.random() * 3);
     let options = ['rock', 'paper', 'scissors'];
@@ -31,11 +49,12 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
-    let playerSelection = prompt("Rock, Paper, or Scissors?");
-    let computerSelection = getComputerSelection();
+    
+    while (playerScore < 5 && computerScore < 5) {
+        let computerSelection = getComputerSelection();
+    
+    //let playerSelection = prompt("Rock, Paper, or Scissors?");
+    
     let result = playRound(playerSelection, computerSelection);
     console.log(result);
     if (result.includes("win")) {
@@ -45,7 +64,20 @@ function game() {
     }
     console.log("Player: " + playerScore);
     console.log("Computer: " + computerScore);
+    score.textContent = playerScore + " - " + computerScore;
 }
 }
+if (playerScore == 5) {
+    console.log("You win the game!");
+    score = "You win the game!";
+} else if (computerScore == 5) {
+    console.log("You lose the game!");
+    score = "You lose the game!";
+}
+
+
+
+
+
 
 game();
